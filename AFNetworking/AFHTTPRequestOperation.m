@@ -58,11 +58,14 @@ NSSet * AFContentTypesFromHTTPHeader(NSString *string) {
 }
 
 static void AFGetMediaTypeAndSubtypeWithString(NSString *string, NSString **type, NSString **subtype) {
-    NSScanner *scanner = [NSScanner scannerWithString:string];
-    [scanner setCharactersToBeSkipped:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    [scanner scanUpToString:@"/" intoString:type];
-    [scanner scanString:@"/" intoString:nil];
-    [scanner scanUpToString:@";" intoString:subtype];
+    if (string)
+    {
+        NSScanner *scanner = [NSScanner scannerWithString:string];
+        [scanner setCharactersToBeSkipped:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        [scanner scanUpToString:@"/" intoString:type];
+        [scanner scanString:@"/" intoString:nil];
+        [scanner scanUpToString:@";" intoString:subtype];
+    }
 }
 
 static NSString * AFStringFromIndexSet(NSIndexSet *indexSet) {
